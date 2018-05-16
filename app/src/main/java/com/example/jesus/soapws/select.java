@@ -14,6 +14,8 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.net.URLEncoder;
+
 public class select extends AppCompatActivity {
 
     public static final String URL = "http://rideapp.somee.com/WebService.asmx";
@@ -22,7 +24,7 @@ public class select extends AppCompatActivity {
     public static final String NAMESPACE = "http://tempuri.org/";
 
     private EditText idUsuario;
-    private TextView usuario, password, nombre, apellidos, avatar, descripcion;
+    private TextView usuario, password, nombre, apellidos, avatar, descripcion, correo;
 
     private UsuarioDTO user = null;
 
@@ -38,6 +40,7 @@ public class select extends AppCompatActivity {
         apellidos = findViewById(R.id.textView4);
         avatar = findViewById(R.id.textView5);
         descripcion = findViewById(R.id.textView6);
+        correo = findViewById(R.id.textView7);
     }
 
     public void select(View view){
@@ -69,8 +72,11 @@ public class select extends AppCompatActivity {
             try {
                 transporte.call(SOAP_ACTION,envelope);
                 SoapObject resSoap = (SoapObject)envelope.getResponse();
-                user = new UsuarioDTO(Integer.valueOf(resSoap.getPropertyAsString(0)), resSoap.getPropertyAsString(1), resSoap.getPropertyAsString(2), resSoap.getPropertyAsString(3),
-                        resSoap.getPropertyAsString(4), resSoap.getPropertyAsString(5), resSoap.getPropertyAsString(6));
+
+                // Se corrige el password obtenido, eliminando caracteres de control '%00'. Acuerdate que tambien elimina espacios, VALIDAR PASS AL CREAR USUARIO
+                String pass = resSoap.getPropertyAsString(2).replaceAll("\\W", "");
+                user = new UsuarioDTO(Integer.valueOf(resSoap.getPropertyAsString(0)), resSoap.getPropertyAsString(1), pass, resSoap.getPropertyAsString(3),
+                        resSoap.getPropertyAsString(4), resSoap.getPropertyAsString(5), resSoap.getPropertyAsString(6), resSoap.getPropertyAsString(7));
 
             } catch (Exception e) {
                 result = false;
@@ -89,6 +95,7 @@ public class select extends AppCompatActivity {
                 apellidos.setText(user.getApellidos());
                 avatar.setText(user.getAvatar());
                 descripcion.setText(user.getDescripcion());
+                correo.setText(user.getCorreo());
             }else{
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }

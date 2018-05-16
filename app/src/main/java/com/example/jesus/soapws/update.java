@@ -25,7 +25,7 @@ public class update extends AppCompatActivity {
     public static final String SOAP_ACTION = "http://tempuri.org/modificarUsuario";
     public static final String NAMESPACE = "http://tempuri.org/";
 
-    private EditText idUsuario, password, nombre, apellidos, avatar, descripcion;
+    private EditText idUsuario, password, nombre, apellidos, avatar, descripcion, correo;
 
     private UsuarioDTO user;
 
@@ -39,6 +39,7 @@ public class update extends AppCompatActivity {
         apellidos = findViewById(R.id.editText10);
         avatar = findViewById(R.id.editText11);
         descripcion = findViewById(R.id.editText12);
+        correo = findViewById(R.id.editText14);
     }
 
     public void update(View view){
@@ -120,7 +121,7 @@ public class update extends AppCompatActivity {
                 transporte.call(select.SOAP_ACTION,envelope);
                 SoapObject resSoap = (SoapObject)envelope.getResponse();
                 user = new UsuarioDTO(Integer.valueOf(resSoap.getPropertyAsString(0)), resSoap.getPropertyAsString(1), resSoap.getPropertyAsString(2), resSoap.getPropertyAsString(3),
-                        resSoap.getPropertyAsString(4), resSoap.getPropertyAsString(5), resSoap.getPropertyAsString(6));
+                        resSoap.getPropertyAsString(4), resSoap.getPropertyAsString(5), resSoap.getPropertyAsString(6), resSoap.getPropertyAsString(7));
 
             } catch (Exception e) {
                 result = false;
@@ -138,6 +139,7 @@ public class update extends AppCompatActivity {
                 user.setApellidos(apellidos.getText().toString());
                 user.setAvatar(avatar.getText().toString());
                 user.setDescripcion(descripcion.getText().toString());
+                user.setCorreo(correo.getText().toString());
                 new TareaWSConsulta(getApplicationContext()).execute(user);
             }else{
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();

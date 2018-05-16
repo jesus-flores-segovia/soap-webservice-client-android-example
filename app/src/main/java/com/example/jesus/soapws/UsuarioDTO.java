@@ -17,18 +17,9 @@ public class UsuarioDTO implements KvmSerializable{
     private String apellidos;
     private String avatar;
     private String descripcion;
+    private String correo;
 
-    public UsuarioDTO(String usuario, String password, String nombre, String apellidos, String avatar, String descripcion) {
-        this.idUsuario = 0;
-        this.usuario = usuario;
-        this.password = password;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.avatar = avatar;
-        this.descripcion = descripcion;
-    }
-
-    public UsuarioDTO(int idUsuario, String usuario, String password, String nombre, String apellidos, String avatar, String descripcion) {
+    public UsuarioDTO(Integer idUsuario, String usuario, String password, String nombre, String apellidos, String avatar, String descripcion, String correo) {
         this.idUsuario = idUsuario;
         this.usuario = usuario;
         this.password = password;
@@ -36,6 +27,18 @@ public class UsuarioDTO implements KvmSerializable{
         this.apellidos = apellidos;
         this.avatar = avatar;
         this.descripcion = descripcion;
+        this.correo = correo;
+    }
+
+    public UsuarioDTO(String usuario, String password, String nombre, String apellidos, String avatar, String descripcion, String correo) {
+        this.idUsuario = 0;
+        this.usuario = usuario;
+        this.password = password;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.avatar = avatar;
+        this.descripcion = descripcion;
+        this.correo = correo;
     }
 
     public Integer getIdUsuario() {
@@ -98,6 +101,14 @@ public class UsuarioDTO implements KvmSerializable{
         this.descripcion = descripcion;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     @Override
     public Object getProperty(int index) {
 
@@ -116,6 +127,8 @@ public class UsuarioDTO implements KvmSerializable{
                 return avatar;
             case 6:
                 return descripcion;
+            case 7:
+                return correo;
             default: break;
         }
 
@@ -124,7 +137,7 @@ public class UsuarioDTO implements KvmSerializable{
 
     @Override
     public int getPropertyCount() {
-        return 7;
+        return 8;
     }
 
     @Override
@@ -151,6 +164,9 @@ public class UsuarioDTO implements KvmSerializable{
                 break;
             case 6:
                 descripcion = value.toString();
+                break;
+            case 7:
+                correo = value.toString();
                 break;
             default: break;
         }
@@ -187,6 +203,10 @@ public class UsuarioDTO implements KvmSerializable{
             case 6:
                 info.type = PropertyInfo.STRING_CLASS;
                 info.name = "Descripcion";
+                break;
+            case 7:
+                info.type = PropertyInfo.STRING_CLASS;
+                info.name = "Correo";
                 break;
             default: break;
         }

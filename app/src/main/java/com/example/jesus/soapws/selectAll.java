@@ -65,7 +65,7 @@ public class selectAll extends AppCompatActivity {
                     SoapObject iu = (SoapObject)resSoap.getProperty(i);
 
                     UsuarioDTO usuario = new UsuarioDTO(Integer.valueOf(iu.getPropertyAsString(0)), iu.getPropertyAsString(1), iu.getPropertyAsString(2), iu.getPropertyAsString(3),
-                            iu.getPropertyAsString(4), iu.getPropertyAsString(5), iu.getPropertyAsString(6));
+                            iu.getPropertyAsString(4), iu.getPropertyAsString(5), iu.getPropertyAsString(6), iu.getPropertyAsString(7));
 
                     usuariosDTO.add(usuario);
                 }

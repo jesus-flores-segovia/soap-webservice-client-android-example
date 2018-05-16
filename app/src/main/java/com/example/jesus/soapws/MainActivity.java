@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String SOAP_ACTION = "http://tempuri.org/nuevoUsuario";
     public static final String NAMESPACE = "http://tempuri.org/";
 
-    private EditText idUsuario, password, nombre, apellidos;
+    private EditText idUsuario, password, nombre, apellidos, correo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.editText2);
         nombre = findViewById(R.id.editText3);
         apellidos = findViewById(R.id.editText4);
+        correo = findViewById(R.id.editText13);
 
     }
 
@@ -44,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
         String password2 = password.getText().toString();
         String nombre2 = nombre.getText().toString();
         String apellidos2 = apellidos.getText().toString();
+        String correo2 = correo.getText().toString();
 
-        new TareaWSConsulta(getApplicationContext()).execute(idUsuario2, password2, nombre2, apellidos2, "", "");
+        new TareaWSConsulta(getApplicationContext()).execute(idUsuario2, password2, nombre2, apellidos2, "", "", correo2);
     }
 
     public void select(View view){
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
             Integer result = 0;
 
-            UsuarioDTO usuario = new UsuarioDTO(params[0], params[1], params[2], params[3], params[4], params[5]);
+            UsuarioDTO usuario = new UsuarioDTO(params[0], params[1], params[2], params[3], params[4], params[5], params[6]);
 
             PropertyInfo pi = new PropertyInfo();
             pi.setName("usuario");

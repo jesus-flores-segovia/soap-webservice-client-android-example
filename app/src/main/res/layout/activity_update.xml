@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jesus.soapws.update">
+    tools:context="com.example.jesus.soapws.update"
+    tools:layout_editor_absoluteY="81dp">
 
     <EditText
         android:id="@+id/editText7"
@@ -32,11 +33,12 @@
         android:id="@+id/editText9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
         android:ems="10"
         android:hint="nombre"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="@+id/editText8"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toTopOf="@+id/editText8" />
 
     <EditText
         android:id="@+id/editText10"
@@ -52,11 +54,12 @@
         android:id="@+id/editText11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
         android:ems="10"
         android:hint="avatar"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="@+id/editText10"
-        app:layout_constraintTop_toBottomOf="@+id/editText10" />
+        app:layout_constraintTop_toTopOf="@+id/editText10" />
 
     <EditText
         android:id="@+id/editText12"
@@ -72,9 +75,20 @@
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:onClick="update"
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText14" />
+
+    <EditText
+        android:id="@+id/editText14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="correo"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/editText12"
         app:layout_constraintTop_toBottomOf="@+id/editText12" />
 </android.support.constraint.ConstraintLayout>
